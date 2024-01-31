@@ -9,7 +9,7 @@ const Filter = () => {
   return (
     <div
       id="region-filter"
-      className=" relative flex justify-between w-3/5 bg-DarkBlueDM rounded-lg"
+      className=" relative flex justify-between w-3/5 bg-DarkBlueDM rounded-lg drop-shadow-md lg:w-1/5"
     >
       <button
         className="appearance-none flex flex-row justify-between w-full text-sm items-center px-5 py-4"
@@ -23,10 +23,10 @@ const Filter = () => {
         )}
       </button>
       {active && (
-        <ul className="absolute inline-block w-full left-0 top-14 bg-DarkBlueDM text-sm rounded-lg">
+        <ul className="absolute inline-block w-full left-0 top-14 bg-DarkBlueDM text-sm rounded-lg z-20">
           {region != null && (
             <li
-              className="cursor-pointer px-5 py-2 active:bg-VeryDarkBlueDM"
+              className="cursor-pointer px-5 py-2 active:bg-VeryDarkBlueDM lg:hover:bg-VeryDarkBlueDM"
               onClick={() => {
                 setRegion(null);
                 setActive(false);
@@ -36,7 +36,7 @@ const Filter = () => {
             </li>
           )}
           <li
-            className="cursor-pointer px-5 py-2 active:bg-VeryDarkBlueDM"
+            className="cursor-pointer px-5 py-2 active:bg-VeryDarkBlueDM lg:hover:bg-VeryDarkBlueDM"
             onClick={() => {
               setRegion("Africa");
               setActive(false);
@@ -45,7 +45,7 @@ const Filter = () => {
             Africa
           </li>
           <li
-            className="cursor-pointer px-5 py-2 active:bg-VeryDarkBlueDM"
+            className="cursor-pointer px-5 py-2 active:bg-VeryDarkBlueDM lg:hover:bg-VeryDarkBlueDM"
             onClick={() => {
               setRegion("America");
               setActive(false);
@@ -54,7 +54,7 @@ const Filter = () => {
             America
           </li>
           <li
-            className="cursor-pointer px-5 py-2 active:bg-VeryDarkBlueDM"
+            className="cursor-pointer px-5 py-2 active:bg-VeryDarkBlueDM lg:hover:bg-VeryDarkBlueDM"
             onClick={() => {
               setRegion("Asia");
               setActive(false);
@@ -63,7 +63,7 @@ const Filter = () => {
             Asia
           </li>
           <li
-            className="cursor-pointer px-5 py-2 active:bg-VeryDarkBlueDM"
+            className="cursor-pointer px-5 py-2 active:bg-VeryDarkBlueDM lg:hover:bg-VeryDarkBlueDM"
             onClick={() => {
               setRegion("Europe");
               setActive(false);
@@ -72,7 +72,7 @@ const Filter = () => {
             Europe
           </li>
           <li
-            className="cursor-pointer px-5 py-2 active:bg-VeryDarkBlueDM"
+            className="cursor-pointer px-5 py-2 active:bg-VeryDarkBlueDM lg:hover:bg-VeryDarkBlueDM"
             onClick={() => {
               setRegion("Oceania");
               setActive(false);
