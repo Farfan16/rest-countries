@@ -1,6 +1,6 @@
 export const CardSkeleton = () => {
   return (
-    <div className="drop-shadow-lg rounded-md max-w-sm w-4/5 bg-DarkBlueDM">
+    <div className="drop-shadow-lg rounded-md max-w-sm w-4/5 lg:w-60 lg:h-80 bg-DarkBlueDM">
       <div className="animate-pulse flex flex-col">
         <div className="rounded-t-md bg-slate-700 h-[164.63px] w-full lg:h-[152.03px] lg:w-full"></div>
         <div className="flex flex-col p-6 gap-2">
