@@ -13,3 +13,18 @@ export const fetchCountryData = async () => {
     console.log("There's an error: ", error);
   }
 };
+
+export const fetchDataPages = async () => {
+  noStore();
+  try {
+    const count = await fetch("https://restcountries.com/v3.1/all");
+    if (count.status != 200) {
+      console.log("Fetching failed", count.status);
+    }
+    const countPages = await count.json();
+    const totalPages = Math.ceil(Number(countPages.length / 8));
+    return totalPages;
+  } catch (error) {
+    console.log(error);
+  }
+};
