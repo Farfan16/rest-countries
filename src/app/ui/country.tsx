@@ -6,11 +6,13 @@ import { fetchCountryData } from "../lib/data";
 const CountryWrapper = async ({
   currentPage,
   totalPages,
+  query,
 }: {
   currentPage: number;
   totalPages: number;
+  query: string;
 }) => {
-  const getCountryData = await fetchCountryData();
+  const getCountryData = await fetchCountryData({ query });
   return (
     <div
       id="card-container"
