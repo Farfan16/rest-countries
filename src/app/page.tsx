@@ -9,14 +9,15 @@ import { fetchDataPages } from "./lib/data";
 export default async function Home({
   searchParams,
 }: {
-  searchParams?: { page?: string };
+  searchParams?: { page?: string; query?: string };
 }) {
-  const totalPages = await fetchDataPages();
+  const query = searchParams?.query || "";
+  const totalPages = await fetchDataPages({ query });
   const currentPage = Number(searchParams?.page) || 1;
   return (
     <main className="flex min-h-screen flex-col items-center gap-10 px-4 pt-6 lg:px-16">
       <div className="flex flex-col w-full gap-10 lg:flex-row lg:justify-between lg:gap-0">
-        <Search />
+        <Search placeholder="Search for a country..." />
         <div className="relative z-10 flex justify-start w-full lg:justify-end">
           <Filter />
         </div>
@@ -25,6 +26,7 @@ export default async function Home({
         <CountryWrapper
           currentPage={currentPage}
           totalPages={Number(totalPages)}
+          query={query}
         />
       </Suspense>
       <Pagination totalPages={Number(totalPages)} />
