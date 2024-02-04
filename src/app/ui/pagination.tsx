@@ -7,8 +7,6 @@ import { generatePagination } from "../lib/util";
 import clsx from "clsx";
 import Link from "next/link";
 
-const page = [1, 2, 3, 4, 5, 6];
-
 const PaginationArrow = ({
   href,
   direction,
