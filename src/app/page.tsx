@@ -9,10 +9,11 @@ import { fetchDataPages } from "./lib/data";
 export default async function Home({
   searchParams,
 }: {
-  searchParams?: { page?: string; query?: string };
+  searchParams?: { page?: string; query?: string; filter?: string };
 }) {
   const query = searchParams?.query || "";
-  const totalPages = await fetchDataPages({ query });
+  const filter = searchParams?.filter || "";
+  const totalPages = await fetchDataPages({ query, filter });
   const currentPage = Number(searchParams?.page) || 1;
   return (
     <main className="flex min-h-screen flex-col items-center gap-10 px-4 pt-6 lg:px-16">
@@ -25,11 +26,11 @@ export default async function Home({
       <Suspense fallback={<CardSkeleton />}>
         <CountryWrapper
           currentPage={currentPage}
-          totalPages={Number(totalPages)}
           query={query}
+          filter={filter}
         />
       </Suspense>
-      <Pagination totalPages={Number(totalPages)} />
+      {totalPages != null && <Pagination totalPages={Number(totalPages)} />}
     </main>
   );
 }
