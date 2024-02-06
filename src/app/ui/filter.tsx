@@ -1,11 +1,30 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
+import { usePathname, useSearchParams, useRouter } from "next/navigation";
 
 const Filter = () => {
   const [active, setActive] = useState(false);
   const [region, setRegion] = useState<string | null>();
+
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
+  const { push } = useRouter();
+  const handleFilter = () => {
+    const params = new URLSearchParams(searchParams);
+    params.set("page", "1");
+    if (region) {
+      params.set("filter", region);
+    } else {
+      params.delete("filter");
+    }
+    push(`${pathname}?${params.toString()}`);
+  };
+
+  useEffect(() => {
+    handleFilter();
+  }, [region]);
   return (
     <div
       id="region-filter"
@@ -47,11 +66,11 @@ const Filter = () => {
           <li
             className="cursor-pointer px-5 py-2 active:bg-VeryDarkBlueDM lg:hover:bg-VeryDarkBlueDM"
             onClick={() => {
-              setRegion("America");
+              setRegion("Americas");
               setActive(false);
             }}
           >
-            America
+            Americas
           </li>
           <li
             className="cursor-pointer px-5 py-2 active:bg-VeryDarkBlueDM lg:hover:bg-VeryDarkBlueDM"
