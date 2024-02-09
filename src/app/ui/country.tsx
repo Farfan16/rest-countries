@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { fetchCountryData } from "../lib/data";
 import CountryCard from "./component/card";
 
@@ -26,7 +25,8 @@ const CountryWrapper = async ({
           .slice((currentPage - 1) * 8, currentPage * 8)
           .map((dataObj: any) => (
             <CountryCard
-              id={dataObj.name.common}
+              key={dataObj.cca3}
+              code={dataObj.cca3}
               flagImage={dataObj.flags.svg}
               flagAlt={dataObj.flags.alt}
               name={dataObj.name.common}

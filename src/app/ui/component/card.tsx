@@ -1,8 +1,9 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 const CountryCard = ({
-  id,
+  code,
   flagImage,
   flagAlt,
   name,
@@ -10,7 +11,7 @@ const CountryCard = ({
   region,
   capital,
 }: {
-  id: string;
+  code: string;
   flagImage: string;
   flagAlt: string;
   name: string;
@@ -19,8 +20,8 @@ const CountryCard = ({
   capital: string;
 }) => {
   return (
-    <div
-      key={id}
+    <Link
+      href={`/detail/${code}`}
       className="relative z-0 flex flex-col justify-center items-start w-4/5 bg-DarkBlueDM rounded-md drop-shadow-lg lg:w-1/5"
     >
       <div
@@ -52,7 +53,7 @@ const CountryCard = ({
           Capital: <span className="font-light">{capital}</span>
         </h3>
       </div>
-    </div>
+    </Link>
   );
 };
 
