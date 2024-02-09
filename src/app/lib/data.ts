@@ -2,7 +2,7 @@ import { unstable_noStore as noStore } from "next/cache";
 
 const fetchUrlAll = async () => {
   const res = await fetch(
-    "https://restcountries.com/v3.1/all?fields=name,flags,population,region,capital"
+    "https://restcountries.com/v3.1/all?fields=cca3,name,flags,population,region,capital"
   );
   if (res.status != 200) {
     console.log("Fetching failed", res.status);
@@ -13,7 +13,7 @@ const fetchUrlAll = async () => {
 
 const fetchUrlName = async ({ query }: { query: string | undefined }) => {
   const res = await fetch(
-    `https://restcountries.com/v3.1/name/${query}?fields=name,flags,population,region,capital`
+    `https://restcountries.com/v3.1/name/${query}?fields=cca3,name,flags,population,region,capital`
   );
   if (res.status != 200) {
     console.log("Error code: ", res.status);
