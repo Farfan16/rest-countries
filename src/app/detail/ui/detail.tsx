@@ -3,14 +3,22 @@ import Image from "next/image";
 import { fetchUrlAlpha } from "@/app/lib/data";
 
 const Detail = async () => {
-  const url = `https://restcountries.com/v3.1/alpha/bel`;
+  const url = `https://restcountries.com/v3.1/name/iceland`;
   const res = await fetch(url);
   const data = await res.json();
   const countryData = data[0];
   const nativeName = Object.keys(countryData.name.nativeName)[0];
   const currencyCode = Object.keys(countryData.currencies)[0];
   const countryLanguage = Object.values(countryData.languages);
-  const countryBorders = Object.values(countryData.borders);
+  const countryBordersChecker = () => {
+    if (typeof countryData.borders != "undefined") {
+      const countryBorders = Object.values(countryData.borders);
+      return countryBorders;
+    } else {
+      return [];
+    }
+  };
+  const countryBorders = countryBordersChecker();
 
   const getCountryBorderName = async () => {
     let countryArr: string[] = [];
