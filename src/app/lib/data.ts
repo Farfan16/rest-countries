@@ -1,5 +1,38 @@
 import { unstable_noStore as noStore } from "next/cache";
 
+const fetchUrlAll = async () => {
+  const res = await fetch(
+    "https://restcountries.com/v3.1/all?fields=name,flags,population,region,capital"
+  );
+  if (res.status != 200) {
+    console.log("Fetching failed", res.status);
+  }
+  const data = await res.json();
+  return data;
+};
+
+const fetchUrlName = async ({ query }: { query: string | undefined }) => {
+  const res = await fetch(
+    `https://restcountries.com/v3.1/name/${query}?fields=name,flags,population,region,capital`
+  );
+  if (res.status != 200) {
+    console.log("Error code: ", res.status);
+    return null;
+  }
+  const data = await res.json();
+  return data;
+};
+
+export const fetchUrlAlpha = async ({ code }: { code: string }) => {
+  const res = await fetch(`https://restcountries.com/v3.1/alpha/${code}`);
+  if (res.status != 200) {
+    console.log("Error code: ", res.status);
+    return null;
+  }
+  const data = await res.json();
+  return data;
+};
+
 export const fetchCountryData = async ({
   query,
   filter,
@@ -10,14 +43,7 @@ export const fetchCountryData = async ({
   noStore();
   try {
     if (query != "") {
-      const res = await fetch(
-        `https://restcountries.com/v3.1/name/${query}?fields=name,flags,population,region,capital`
-      );
-      if (res.status != 200) {
-        console.log("Error code: ", res.status);
-        return null;
-      }
-      const data = await res.json();
+      const data = await fetchUrlName({ query });
       const countryData = data.map((dataCountry: any) => ({ ...dataCountry }));
       if (filter) {
         const filteredData = countryData.filter(
@@ -27,13 +53,7 @@ export const fetchCountryData = async ({
       }
       return countryData;
     }
-    const res = await fetch(
-      "https://restcountries.com/v3.1/all?fields=name,flags,population,region,capital"
-    );
-    if (res.status != 200) {
-      console.log("Fetching failed", res.status);
-    }
-    const data = await res.json();
+    const data = await fetchUrlAll();
     const countryData = data.map((dataCountry: any) => ({ ...dataCountry }));
     if (filter) {
       const filteredData = countryData.filter(
@@ -47,23 +67,6 @@ export const fetchCountryData = async ({
   }
 };
 
-// export const fetchTest = async () => {
-//   noStore();
-//   try {
-//     const res = await fetch(
-//       "https://restcountries.com/v3.1/all?fields=name,flags,population,region,capital"
-//     );
-//     if (res.status != 200) {
-//       console.log("Fetching failed", res.status);
-//     }
-//     const data = await res.json();
-//     // const countryData = data.;
-//     return data;
-//   } catch (error) {
-//     console.log("There's an error: ", error);
-//   }
-// };
-
 export const fetchDataPages = async ({
   query,
   filter,
@@ -74,13 +77,7 @@ export const fetchDataPages = async ({
   noStore();
   try {
     if (query != "") {
-      const count = await fetch(
-        `https://restcountries.com/v3.1/name/${query}?fields=name,flags,population,region,capital`
-      );
-      if (count.status != 200) {
-        return null;
-      }
-      const countPages = await count.json();
+      const countPages = await fetchUrlName({ query });
       if (filter) {
         const filteredCountPages = countPages.filter(
           (country: any) => country.region == `${filter}`
@@ -93,13 +90,7 @@ export const fetchDataPages = async ({
       const totalPages = Math.ceil(Number(countPages.length / 8));
       return totalPages;
     }
-    const count = await fetch(
-      "https://restcountries.com/v3.1/all?fields=name,flags,population,region,capital"
-    );
-    if (count.status != 200) {
-      console.log("Fetching failed", count.status);
-    }
-    const countPages = await count.json();
+    const countPages = await fetchUrlAll();
     if (filter) {
       const filteredCountPages = countPages.filter(
         (country: any) => country.region == `${filter}`
