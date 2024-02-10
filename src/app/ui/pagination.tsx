@@ -50,7 +50,7 @@ const PaginationNumber = ({
     {
       "rounded-l-md": position === "first" || position === "single",
       "rounded-r-md": position === "last" || position === "single",
-      "z-10 bg-DarkGrayLM text-VeryLightGrayLM border-VeryLightGrayLM dark:text-DarkBlueDM dark:border-white dark:bg-white":
+      "z-10 bg-DarkGrayLM text-VeryDarkBlueLM border-VeryDarkBlueLM dark:text-DarkBlueDM dark:border-white dark:bg-white":
         isActive,
       "hover:dark:bg-VeryDarkBlueDM active:hover:dark:bg-VeryDarkBlueDM":
         !isActive && position !== "middle",
