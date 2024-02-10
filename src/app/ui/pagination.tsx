@@ -17,7 +17,7 @@ const PaginationArrow = ({
   isDisabled: boolean;
 }) => {
   const className = clsx("cursor-pointer text-VeryDarkBlueLM dark:text-white", {
-    "pointer-events-none text-DarkGrayLM dark:text-DarkBlueDM": isDisabled,
+    "pointer-events-none !text-DarkGrayLM dark:!text-DarkBlueDM": isDisabled,
     "hover:text-DarkGrayLM hover:dark:text-DarkBlueDM": !isDisabled,
     "mr-2 lg:mr-4": direction === "left",
     "ml-2 lg:ml-4": direction === "right",
@@ -50,7 +50,7 @@ const PaginationNumber = ({
     {
       "rounded-l-md": position === "first" || position === "single",
       "rounded-r-md": position === "last" || position === "single",
-      "z-10 bg-DarkGrayLM text-VeryDarkBlueLM border-VeryDarkBlueLM dark:text-DarkBlueDM dark:border-white dark:bg-white":
+      "z-10 !bg-DarkGrayLM !text-VeryLightGrayLM dark:!text-DarkBlueDM dark:!border-white dark:!bg-white":
         isActive,
       "hover:dark:bg-VeryDarkBlueDM active:hover:dark:bg-VeryDarkBlueDM":
         !isActive && position !== "middle",
