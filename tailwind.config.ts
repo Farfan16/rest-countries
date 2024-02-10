@@ -21,8 +21,35 @@ const config: Config = {
         VeryLightGrayLM: "hsl(0, 0%, 98%)",
         White: "hsl(0, 0%, 100%)",
       },
+      keyframes: {
+        "spin-disolve": {
+          "0%": { transform: "rotate(0deg)", opacity: "1" },
+          "30%": { transform: "rotate(10deg)", opacity: "1" },
+          "100%": { transform: "rotate(180deg)", opacity: "0" },
+        },
+        "spin-appear": {
+          "0%": { transform: "rotate(180deg)", opacity: "0" },
+          "30%": { transform: "rotate(170deg)", opacity: "0" },
+          "100%": { transform: "rotate(0deg)", opacity: "1" },
+        },
+        dissolve: {
+          "0%": { opacity: "1" },
+          "100%": { opacity: "0" },
+        },
+        appear: {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
+        },
+      },
+      animation: {
+        "spin-dissolve": "spin-disolve .1s ease-in 1 forwards",
+        "spin-appear": "spin-appear .1s ease-in 1 forwards",
+        dissolve: "dissolve .1s ease-in 1 forwards",
+        appear: "appear .1s ease-in 1 forwards",
+      },
     },
   },
   plugins: [],
+  darkMode: "class",
 };
 export default config;
