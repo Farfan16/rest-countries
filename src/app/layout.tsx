@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Nunito_Sans } from "next/font/google";
 import "./globals.css";
 import Topbar from "./ui/topbar";
+import { Providers } from "./providers";
 
 const inter = Inter({ subsets: ["latin"] });
 const nunito_sans = Nunito_Sans({ subsets: ["latin"] });
@@ -17,10 +18,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={nunito_sans.className}>
-        <Topbar />
-        {children}
+        <Providers>
+          <Topbar />
+          {children}
+        </Providers>
       </body>
     </html>
   );
