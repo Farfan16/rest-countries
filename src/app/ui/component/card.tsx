@@ -22,7 +22,7 @@ const CountryCard = ({
   return (
     <Link
       href={`/detail/${code}`}
-      className="relative z-0 flex flex-col justify-center items-start w-4/5 bg-DarkBlueDM rounded-md drop-shadow-lg lg:w-1/5"
+      className="relative z-0 flex flex-col justify-center items-start w-4/5 bg-White text-VeryDarkBlueLM dark:bg-DarkBlueDM dark:text-White rounded-md drop-shadow-lg lg:w-1/5"
     >
       <div
         id="flag"

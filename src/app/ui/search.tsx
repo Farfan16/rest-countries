@@ -20,7 +20,7 @@ const Search = ({ placeholder }: { placeholder: string }) => {
     replace(`${pathname}?${params.toString()}`);
   });
   return (
-    <div className="flex flex-row justify-start items-center gap-6 w-full px-10 py-4 bg-DarkBlueDM rounded-md drop-shadow-md lg:w-1/2 lg:px-8">
+    <div className="flex flex-row justify-start items-center gap-6 w-full px-10 py-4 bg-white text-DarkGrayLM dark:bg-DarkBlueDM dark:text-White rounded-md drop-shadow-md lg:w-1/2 lg:px-8">
       <SlMagnifier />
       <input
         type="text"

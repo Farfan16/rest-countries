@@ -16,9 +16,9 @@ const PaginationArrow = ({
   direction: "left" | "right";
   isDisabled: boolean;
 }) => {
-  const className = clsx("fill-slate-100 cursor-pointer", {
-    "pointer-events-none fiil-DarkBlueDM": isDisabled,
-    "hover:fill-white": !isDisabled,
+  const className = clsx("cursor-pointer text-VeryDarkBlueLM dark:text-white", {
+    "pointer-events-none text-DarkGrayLM dark:text-DarkBlueDM": isDisabled,
+    "hover:text-DarkGrayLM hover:dark:text-DarkBlueDM": !isDisabled,
     "mr-2 lg:mr-4": direction === "left",
     "ml-2 lg:ml-4": direction === "right",
   });
@@ -45,14 +45,18 @@ const PaginationNumber = ({
   isActive: boolean;
   position?: "first" | "last" | "middle" | "single";
 }) => {
-  const className = clsx("mx-1 p-2 border bg-DarkBlueDM", {
-    "rounded-l-md": position === "first" || position === "single",
-    "rounded-r-md": position === "last" || position === "single",
-    "z-10 text-DarkBlueDM border-white bg-white": isActive,
-    "hover:bg-VeryDarkBlueDM active:bg-VeryDarkBlueLM":
-      !isActive && position !== "middle",
-    "text-white": position === "middle",
-  });
+  const className = clsx(
+    "mx-1 p-2 border bg-White text-VeryDarkBlueLM dark:bg-DarkBlueDM dark:text-White",
+    {
+      "rounded-l-md": position === "first" || position === "single",
+      "rounded-r-md": position === "last" || position === "single",
+      "z-10 bg-DarkGrayLM text-VeryLightGrayLM border-VeryLightGrayLM dark:text-DarkBlueDM dark:border-white dark:bg-white":
+        isActive,
+      "hover:dark:bg-VeryDarkBlueDM active:hover:dark:bg-VeryDarkBlueDM":
+        !isActive && position !== "middle",
+      "text-VeryDarkBlueLM": position === "middle",
+    }
+  );
   return isActive || position === "middle" ? (
     <div className={className}>{page}</div>
   ) : (

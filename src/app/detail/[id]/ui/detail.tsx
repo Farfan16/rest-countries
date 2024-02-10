@@ -40,10 +40,14 @@ const Detail = async ({ code }: { code: string }) => {
   const countryBordersData = await getCountryBorderName();
   return (
     <div className="flex flex-col md:flex-row md:mt-14 w-full gap-10">
-      <div className="max-w-full w-full h-fit mt-14 md:mt-0">
+      <div className="max-w-full w-full h-fit  mt-14 md:mt-0">
         <Image
           src={countryData.flags.svg}
-          alt={countryData.flags.alt}
+          alt={
+            typeof countryData.flags.alt != "undefined"
+              ? countryData.flags.alt
+              : `Flag of ${countryData.name.common}`
+          }
           width={400}
           height={300}
         />
@@ -113,7 +117,7 @@ const Detail = async ({ code }: { code: string }) => {
                 <Link
                   key={index}
                   href={`/detail/${country.countryCode}`}
-                  className="inline-flex flex-wrap items-center bg-DarkBlueDM px-4 py-2 text-sm rounded shadow"
+                  className="inline-flex flex-wrap items-center bg-White hover:bg-VeryLightGrayLM active:bg-DarkGrayLM dark:bg-DarkBlueDM hover:dark:bg-VeryDarkBlueDM active:dark:bg-VeryDarkBlueLM px-4 py-2 text-sm rounded shadow"
                 >
                   <p>{country.countryName}</p>
                 </Link>
